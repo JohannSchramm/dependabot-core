@@ -132,6 +132,11 @@ docker run --rm -ti \
   -v "$(pwd)/github_actions/lib:$CODE_DIR/github_actions/lib" \
   -v "$(pwd)/github_actions/spec:$CODE_DIR/github_actions/spec" \
   -v "$(pwd)/github_actions/script:$CODE_DIR/github_actions/script" \
+  -v "$(pwd)/pub/.rubocop.yml:$CODE_DIR/pub/.rubocop.yml" \
+  -v "$(pwd)/pub/Gemfile:$CODE_DIR/pub/Gemfile" \
+  -v "$(pwd)/pub/dependabot-pub.gemspec:$CODE_DIR/pub/dependabot-pub.gemspec" \
+  -v "$(pwd)/pub/lib:$CODE_DIR/pub/lib" \
+  -v "$(pwd)/pub/spec:$CODE_DIR/pub/spec" \
   -v "$(pwd)/python/.rubocop.yml:$CODE_DIR/python/.rubocop.yml" \
   -v "$(pwd)/python/Gemfile:$CODE_DIR/python/Gemfile" \
   -v "$(pwd)/python/dependabot-python.gemspec:$CODE_DIR/python/dependabot-python.gemspec" \
