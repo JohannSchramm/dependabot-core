@@ -33,6 +33,7 @@
 # - submodules
 # - docker
 # - terraform
+# - pub
 
 # rubocop:disable Style/GlobalVars
 
@@ -51,6 +52,7 @@ $LOAD_PATH << "./hex/lib"
 $LOAD_PATH << "./maven/lib"
 $LOAD_PATH << "./npm_and_yarn/lib"
 $LOAD_PATH << "./nuget/lib"
+$LOAD_PATH << "./pub/lib"
 $LOAD_PATH << "./python/lib"
 $LOAD_PATH << "./terraform/lib"
 
@@ -88,6 +90,7 @@ require "dependabot/hex"
 require "dependabot/maven"
 require "dependabot/npm_and_yarn"
 require "dependabot/nuget"
+require "dependabot/pub"
 require "dependabot/python"
 require "dependabot/terraform"
 

@@ -84,6 +84,7 @@
         "npm_and_yarn",
         "nuget",
         "pip",
+        "pub",
         "submodules",
         "terraform"
       ],
