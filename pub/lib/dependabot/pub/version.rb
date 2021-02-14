@@ -11,8 +11,9 @@ module Dependabot
       SUFFIX_PATTERN = "[-a-zA-Z0-9]+(\\.[-a-zA-Z0-9]+)*"
       PRERELEASE_PATTERN = "-#{SUFFIX_PATTERN}"
       BUILD_NUMBER_PATTERN = "\\+#{SUFFIX_PATTERN}"
+      VERSION_PATTERN = "#{VERSION_NUMBER_PATTERN}(#{PRERELEASE_PATTERN})?(#{BUILD_NUMBER_PATTERN})?"
 
-      VERSION_REGEX = /\A#{VERSION_NUMBER_PATTERN}(#{PRERELEASE_PATTERN})?(#{BUILD_NUMBER_PATTERN})?\Z/.freeze
+      VERSION_REGEX = /\A#{VERSION_PATTERN}\Z/.freeze
       VERSION_NUMBER_REGEX = /#{VERSION_NUMBER_PATTERN}/.freeze
       PRERELEASE_REGEX = /#{PRERELEASE_PATTERN}/.freeze
       BUILD_NUMBER_REGEX = /#{BUILD_NUMBER_PATTERN}/.freeze
@@ -40,6 +41,16 @@ module Dependabot
 
       def version
         @version_string
+      end
+
+      def breaking
+        major, minor = @version_number_string.split(".").map(&:to_i)
+
+        if major.zero?
+          Pub::Version.new("0.#{minor + 1}.0")
+        else
+          Pub::Version.new("#{major + 1}.0.0")
+        end
       end
 
       def <=>(other)
