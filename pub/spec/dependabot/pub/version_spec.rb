@@ -182,4 +182,23 @@ RSpec.describe Dependabot::Pub::Version do
       expect(version.version).to eq(string)
     end
   end
+
+  describe "next breaking version" do
+    values = [
+      ["1.0.0", "2.0.0"],
+      ["1.0.0-test", "2.0.0"],
+      ["0.1.0", "0.2.0"],
+      ["2.0.0", "3.0.0"],
+      ["0.0.0", "0.1.0"],
+      ["1.1.1", "2.0.0"],
+      ["0.1.1", "0.2.0"],
+      ["0.0.1", "0.1.0"]
+    ]
+    values.each do |version, expected|
+      it "for #{version} should be #{expected}" do
+        breaking = described_class.new(version).breaking
+        expect(breaking).to eq(described_class.new(expected))
+      end
+    end
+  end
 end
