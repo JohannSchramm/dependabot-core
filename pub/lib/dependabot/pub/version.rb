@@ -53,6 +53,14 @@ module Dependabot
         end
       end
 
+      def priority(other)
+        comparison = self <=> other
+        return comparison unless prerelease? ^ other.prerelease?
+
+        return -1 if prerelease?
+        return 1 if other.prerelease?
+      end
+
       def <=>(other)
         comparison = super(other)
         return comparison unless comparison.zero? && other.is_a?(Dependabot::Pub::Version)
@@ -69,6 +77,14 @@ module Dependabot
         compare_suffix(build_number_string, other.build_number_string)
       end
 
+      def prerelease?
+        @contains_prerelease
+      end
+
+      def buildnumber?
+        @contains_buildnumber
+      end
+
       private
 
       def zip_unknown_length(list_a, list_b)
@@ -79,13 +95,13 @@ module Dependabot
       end
 
       def compare_is_prerelease(other)
-        return -1 if !prerelease_string.nil? && other.prerelease_string.nil?
-        return 1 if prerelease_string.nil? && !other.prerelease_string.nil?
+        return -1 if prerelease? && !other.prerelease?
+        return 1 if !prerelease? && other.prerelease?
       end
 
       def compare_has_build_number(other)
-        return 1 if !build_number_string.nil? && other.build_number_string.nil?
-        return -1 if build_number_string.nil? && !other.build_number_string.nil?
+        return 1 if buildnumber? && !other.buildnumber?
+        return -1 if !buildnumber? && other.buildnumber?
       end
 
       def compare_suffix(element_a, element_b)
