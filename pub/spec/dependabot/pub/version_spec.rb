@@ -175,6 +175,38 @@ RSpec.describe Dependabot::Pub::Version do
     end
   end
 
+  describe "check priority" do
+    context "when sorting an array" do
+      list = [
+        "0.9.0-a",
+        "0.9.0-a.1",
+        "1.0.0-b.1",
+        "1.0.0-b.2",
+        "1.0.0-c.1",
+        "1.0.0-c.1+1",
+        "2.0.0-a",
+        "3.0.0-a",
+        "3.0.0-b",
+        "0.9.0",
+        "0.9.0+1",
+        "1.0.0",
+        "1.0.0+1",
+        "1.1.0+1",
+        "1.1.0+1.0.0",
+        "1.3.7+1.1.0",
+        "2.0.0",
+        "2.1.0",
+        "2.1.1",
+        "2.2.0",
+        "2.3.0"
+      ]
+      it "is equal" do
+        versions = list.map { |v| described_class.new(v) }
+        expect(versions.reverse.sort { |a, b| a.priority b }).to eq(versions)
+      end
+    end
+  end
+
   describe "check version string" do
     it "returns the given version string" do
       string = "1.0.0-test+test-test"
