@@ -1,0 +1,22 @@
+name: dependabot-pub-example
+description: A sample Dart/Flutter project
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  a: ^2.1.0
+  b: '>= 1.0.0'
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  c: '1.0.0'
+
+flutter:
+  uses-material-design: true
