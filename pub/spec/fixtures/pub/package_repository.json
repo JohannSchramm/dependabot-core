@@ -1,0 +1,11 @@
+{
+    "name": "a",
+    "latest": {
+        "version": "2.1.0",
+        "pubspec": {
+            "name": "a",
+            "version": "2.1.0",
+            "repository": "https://github.com/dependabot/dependabot-script"
+        }
+    }
+}
