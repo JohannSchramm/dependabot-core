@@ -18,17 +18,23 @@ module Dependabot
 
       def fetch_files
         files = []
-
         files << pubspec if pubspec
 
-        return files if files.any?
+        if files.empty?
+          raise Dependabot::DependencyFileNotFound,
+                Pathname.new(File.join(directory, "pubspec.yaml")).cleanpath.to_path
+        end
 
-        path = Pathname.new(File.join(directory, "pubspec.yaml")).cleanpath.to_path
-        raise Dependabot::DependencyFileNotFound, path
+        files << pubspec_lock if pubspec_lock
+        files
       end
 
       def pubspec
         @pubspec ||= fetch_file_if_present("pubspec.yaml")
+      end
+
+      def pubspec_lock
+        @pubspec_lock ||= fetch_file_if_present("pubspec.lock")
       end
     end
   end
