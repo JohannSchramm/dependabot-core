@@ -31,13 +31,13 @@ RSpec.describe Dependabot::Pub::FileFetcher do
   let(:json_header) { { "content-type" => "application/json" } }
   before { allow(file_fetcher_instance).to receive(:commit).and_return("sha") }
 
-  context "with a pubspec.yaml file" do
+  context "with a pubspec.yaml file and without a pubspec.lock file" do
     before do
       stub_request(:get, url + "?ref=sha").
         with(headers: { "Authorization" => "token token" }).
         to_return(
           status: 200,
-          body: fixture("github", "contents_repo.json"),
+          body: fixture("github", "contents_repo_pubspec.json"),
           headers: json_header
         )
       stub_request(:get, url + "pubspec.yaml?ref=sha").
@@ -56,13 +56,63 @@ RSpec.describe Dependabot::Pub::FileFetcher do
     end
   end
 
-  context "without a pubspec.yaml file" do
+  context "with both a pubspec.yaml and a pubspec.lock file" do
     before do
       stub_request(:get, url + "?ref=sha").
         with(headers: { "Authorization" => "token token" }).
         to_return(
           status: 200,
-          body: fixture("github", "contents_repo_without_pubspec.json"),
+          body: fixture("github", "contents_repo_both.json"),
+          headers: json_header
+        )
+      stub_request(:get, url + "pubspec.yaml?ref=sha").
+        with(headers: { "Authorization" => "token token" }).
+        to_return(
+          status: 200,
+          body: fixture("github", "contents_pubspec.json"),
+          headers: json_header
+        )
+      stub_request(:get, url + "pubspec.lock?ref=sha").
+        with(headers: { "Authorization" => "token token" }).
+        to_return(
+          status: 200,
+          body: fixture("github", "contents_lock.json"),
+          headers: json_header
+        )
+    end
+
+    it "fetches the pubspec.yaml and pubspec.lock file" do
+      expect(file_fetcher_instance.files.map(&:name)).to match_array(
+        %w(pubspec.yaml pubspec.lock)
+      )
+    end
+  end
+
+  context "without a pubspec.yaml or pubspec.lock file" do
+    before do
+      stub_request(:get, url + "?ref=sha").
+        with(headers: { "Authorization" => "token token" }).
+        to_return(
+          status: 200,
+          body: fixture("github", "contents_repo_none.json"),
+          headers: json_header
+        )
+    end
+
+    it "raises a helpful error" do
+      expect { file_fetcher_instance.files }.to raise_error(
+        Dependabot::DependencyFileNotFound
+      )
+    end
+  end
+
+  context "without a pubspec.yaml file but with a pubspec.lock file" do
+    before do
+      stub_request(:get, url + "?ref=sha").
+        with(headers: { "Authorization" => "token token" }).
+        to_return(
+          status: 200,
+          body: fixture("github", "contents_repo_lock.json"),
           headers: json_header
         )
     end

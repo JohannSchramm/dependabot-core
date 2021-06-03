@@ -1,0 +1,82 @@
+[
+    {
+        "name": ".github",
+        "path": ".github",
+        "sha": "f4db4a6dc12393176fb5dcb466f57e7847e680eb",
+        "size": 0,
+        "url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/.github?ref=main",
+        "html_url": "https://github.com/JohannSchramm/dependabot-pub-example/tree/main/.github",
+        "git_url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/trees/f4db4a6dc12393176fb5dcb466f57e7847e680eb",
+        "download_url": null,
+        "type": "dir",
+        "_links": {
+            "self": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/.github?ref=main",
+            "git": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/trees/f4db4a6dc12393176fb5dcb466f57e7847e680eb",
+            "html": "https://github.com/JohannSchramm/dependabot-pub-example/tree/main/.github"
+        }
+    },
+    {
+        "name": ".gitignore",
+        "path": ".gitignore",
+        "sha": "1c6f638218ebaa79ade6588835494a1a7ece5682",
+        "size": 692,
+        "url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/.gitignore?ref=main",
+        "html_url": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/.gitignore",
+        "git_url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/1c6f638218ebaa79ade6588835494a1a7ece5682",
+        "download_url": "https://raw.githubusercontent.com/JohannSchramm/dependabot-pub-example/main/.gitignore",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/.gitignore?ref=main",
+            "git": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/1c6f638218ebaa79ade6588835494a1a7ece5682",
+            "html": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/.gitignore"
+        }
+    },
+    {
+        "name": "LICENSE",
+        "path": "LICENSE",
+        "sha": "4ab3916f11eabf65f03c699e3edfafaa866fb01d",
+        "size": 1071,
+        "url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/LICENSE?ref=main",
+        "html_url": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/LICENSE",
+        "git_url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/4ab3916f11eabf65f03c699e3edfafaa866fb01d",
+        "download_url": "https://raw.githubusercontent.com/JohannSchramm/dependabot-pub-example/main/LICENSE",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/LICENSE?ref=main",
+            "git": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/4ab3916f11eabf65f03c699e3edfafaa866fb01d",
+            "html": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/LICENSE"
+        }
+    },
+    {
+        "name": "README.md",
+        "path": "README.md",
+        "sha": "78eccaf4a76244d4096dc363f0dff8d5322abf6b",
+        "size": 129,
+        "url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/README.md?ref=main",
+        "html_url": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/README.md",
+        "git_url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/78eccaf4a76244d4096dc363f0dff8d5322abf6b",
+        "download_url": "https://raw.githubusercontent.com/JohannSchramm/dependabot-pub-example/main/README.md",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/README.md?ref=main",
+            "git": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/78eccaf4a76244d4096dc363f0dff8d5322abf6b",
+            "html": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/README.md"
+        }
+    },
+    {
+        "name": "pubspec.lock",
+        "path": "pubspec.lock",
+        "sha": "f9e62b98ad639c808a4a4fd8becb6618b4702929",
+        "size": 6643,
+        "url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/pubspec.lock?ref=main",
+        "html_url": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/pubspec.lock",
+        "git_url": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/f9e62b98ad639c808a4a4fd8becb6618b4702929",
+        "download_url": "https://raw.githubusercontent.com/JohannSchramm/dependabot-pub-example/main/pubspec.lock",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/contents/pubspec.lock?ref=main",
+            "git": "https://api.github.com/repos/JohannSchramm/dependabot-pub-example/git/blobs/f9e62b98ad639c808a4a4fd8becb6618b4702929",
+            "html": "https://github.com/JohannSchramm/dependabot-pub-example/blob/main/pubspec.lock"
+        }
+    }
+]
