@@ -13,17 +13,19 @@ module Dependabot
       def parse
         set = DependencySet.new
 
-        pubspec_files.each do |file|
-          set += pubspec_file_dependencies(file)
-        end
+        set += pubspec_file_dependencies(pubspec) unless pubspec.nil?
 
         set.dependencies
       end
 
       private
 
+      def pubspec
+        get_original_file("pubspec.yaml")
+      end
+
       def check_required_files
-        return if get_original_file("pubspec.yaml")
+        return if pubspec
 
         raise "No pubspec.yaml file"
       end
