@@ -65,7 +65,7 @@ RSpec.describe Dependabot::Pub::FileUpdater do
       end
 
       it "should update the dependency and lockfile" do
-        expect(Dependabot::SharedHelpers).to receive(:run_shell_command).with("dart pub upgrade a")
+        expect(Dependabot::SharedHelpers).to receive(:run_shell_command).with("flutter pub upgrade a")
 
         allow(File).to receive(:read).and_call_original
         allow(File).to receive(:read).with("pubspec.lock").and_return("updated pubspec.lock content")
