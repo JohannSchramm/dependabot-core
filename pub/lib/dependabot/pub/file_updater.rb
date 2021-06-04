@@ -64,7 +64,7 @@ module Dependabot
         SharedHelpers.in_a_temporary_directory(spec.directory) do
           File.write("pubspec.yaml", spec.content)
 
-          SharedHelpers.run_shell_command("dart pub upgrade #{dependency.name}")
+          SharedHelpers.run_shell_command("flutter pub upgrade #{dependency.name}")
 
           updated_file(
             file: lockfile,
