@@ -63,6 +63,7 @@ module Dependabot
       def updated_lockfile_for_pubspec_dependency(spec, dependency)
         SharedHelpers.in_a_temporary_directory(spec.directory) do
           File.write("pubspec.yaml", spec.content)
+          File.write("pubspec.lock", lockfile.content)
 
           SharedHelpers.run_shell_command("flutter pub upgrade #{dependency.name}")
 

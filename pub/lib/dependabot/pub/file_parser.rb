@@ -71,10 +71,6 @@ module Dependabot
       def exact_version?(req)
         Dependabot::Pub::Requirement.new(req).exact?
       end
-
-      def pubspec_files
-        dependency_files
-      end
     end
   end
 end
