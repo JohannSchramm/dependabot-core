@@ -35,6 +35,8 @@ module Dependabot
 
         dependencies = data.fetch(group, {})
 
+        return [] if dependencies.nil?
+
         dependencies.
           select { |_, value| value.is_a?(String) }.
           map { |key, val| { name: key, requires: val, group: group } }
