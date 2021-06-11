@@ -212,6 +212,7 @@ RSpec.describe Dependabot::Pub::Version do
       string = "1.0.0-test+test-test"
       version = described_class.new(string)
       expect(version.version).to eq(string)
+      expect(version.to_s).to eq(string)
     end
   end
 

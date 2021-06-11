@@ -43,6 +43,10 @@ module Dependabot
         @version_string
       end
 
+      def to_s
+        version
+      end
+
       def breaking
         major, minor = @version_number_string.split(".").map(&:to_i)
 
