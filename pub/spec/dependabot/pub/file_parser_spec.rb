@@ -35,7 +35,7 @@ RSpec.describe Dependabot::Pub::FileParser do
       mock_dependencies = [
         Dependabot::Dependency.new(
           name: "a",
-          version: "1.0.0",
+          version: nil,
           package_manager: "pub",
           requirements: [{
             requirement: "1.0.0",
@@ -134,7 +134,7 @@ RSpec.describe Dependabot::Pub::FileParser do
         ),
         Dependabot::Dependency.new(
           name: "j",
-          version: "1.0.0",
+          version: nil,
           package_manager: "pub",
           requirements: [{
             requirement: "1.0.0",

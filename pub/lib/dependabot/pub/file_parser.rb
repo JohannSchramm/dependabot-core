@@ -52,9 +52,11 @@ module Dependabot
         all = [dependencies, dev_dependencies].flatten
 
         all.each do |dependency|
+          Dependabot::Pub::Requirement.new(dependency[:requires])
+
           set << Dependency.new(
             name: dependency[:name],
-            version: (dependency[:requires] if exact_version?(dependency[:requires])),
+            version: nil,
             package_manager: "pub",
             requirements: [{
               requirement: dependency[:requires],
@@ -68,10 +70,6 @@ module Dependabot
         set
       rescue Gem::Requirement::BadRequirementError
         raise Dependabot::DependencyFileNotParseable, file.name
-      end
-
-      def exact_version?(req)
-        Dependabot::Pub::Requirement.new(req).exact?
       end
     end
   end
