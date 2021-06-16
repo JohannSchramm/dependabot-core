@@ -111,5 +111,49 @@ RSpec.describe Dependabot::Pub::UpdateChecker do
         )
       end
     end
+
+    context "with range requirement" do
+      let(:dependency) do
+        Dependabot::Dependency.new(
+          name: "a",
+          version: nil,
+          package_manager: "pub",
+          requirements: [{
+            requirement: ">=0.1.0 <0.1.3",
+            groups: ["dependencies"],
+            source: nil,
+            file: "pubspec.yaml"
+          }]
+        )
+      end
+
+      before do
+        stub_request(:get, "https://pub.dartlang.org/packages/a.json").
+          to_return(
+            status: 200,
+            body: fixture("pub", "versions_build.json"),
+            headers: json_header
+          )
+      end
+
+      it "return the latest version" do
+        expect(update_checker_instance.latest_version).to eq(Dependabot::Pub::Version.new("1.0.0"))
+      end
+
+      it "return the latest resolvable version" do
+        expect(update_checker_instance.latest_resolvable_version).to eq(Dependabot::Pub::Version.new("0.1.0+2"))
+      end
+
+      it "return updated requirements" do
+        expect(update_checker_instance.updated_requirements).to eq(
+          [{
+            requirement: "^1.0.0",
+            groups: ["dependencies"],
+            source: nil,
+            file: "pubspec.yaml"
+          }]
+        )
+      end
+    end
   end
 end
