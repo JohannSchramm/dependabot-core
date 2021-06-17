@@ -33,6 +33,8 @@ module Dependabot
       def dependency_strings_from_yaml(yaml, group)
         data = YAML.safe_load(yaml.content, aliases: true)
 
+        return [] if data.nil?
+
         dependencies = data.fetch(group, {})
 
         return [] if dependencies.nil?

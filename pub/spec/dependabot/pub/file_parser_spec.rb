@@ -198,6 +198,19 @@ RSpec.describe Dependabot::Pub::FileParser do
       end
     end
 
+    context "with an empty pubspec.yaml" do
+      let(:pubspec_file) do
+        Dependabot::DependencyFile.new(
+          name: "pubspec.yaml",
+          content: ""
+        )
+      end
+
+      it "should return no dependencies" do
+        expect(dependencies.length).to eq(0)
+      end
+    end
+
     context "without pubspec.yaml" do
       let(:files) { [] }
 
