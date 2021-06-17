@@ -59,6 +59,10 @@ module Dependabot
 
         @requirements.all? { |op, req_ver| OPS[op].call(version, req_ver) }
       end
+
+      def any_op?
+        @requirements.any? { |op, _| op == "any" }
+      end
     end
   end
 end

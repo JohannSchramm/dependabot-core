@@ -188,4 +188,16 @@ RSpec.describe Dependabot::Pub::Requirement do
       end
     end
   end
+
+  describe "any_op?" do
+    it "returns true for 'any' requirements" do
+      requirement = described_class.new(["any"])
+      expect(requirement.any_op?).to eq(true)
+    end
+
+    it "returns false for other requirements" do
+      requirement = described_class.new(["1.0.0"])
+      expect(requirement.any_op?).to eq(false)
+    end
+  end
 end

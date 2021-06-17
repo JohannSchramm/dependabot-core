@@ -156,4 +156,61 @@ RSpec.describe Dependabot::Pub::UpdateChecker do
       end
     end
   end
+
+  describe "up_to_date?" do
+    before do
+      stub_request(:get, "https://pub.dartlang.org/packages/a.json").
+        to_return(
+          status: 200,
+          body: fixture("pub", "versions.json"),
+          headers: json_header
+        )
+    end
+
+    let(:dependency) do
+      Dependabot::Dependency.new(
+        name: "a",
+        version: nil,
+        package_manager: "pub",
+        requirements: [{
+          requirement: requirement,
+          groups: ["dependencies"],
+          source: nil,
+          file: "pubspec.yaml"
+        }]
+      )
+    end
+
+    context "for latest dependency" do
+      let(:requirement) { "^2.1.0" }
+
+      it "is up to date" do
+        expect(update_checker_instance.up_to_date?).to eq(true)
+      end
+    end
+
+    context "for dependency with any requirement" do
+      let(:requirement) { "any" }
+
+      it "is up to date" do
+        expect(update_checker_instance.up_to_date?).to eq(true)
+      end
+    end
+
+    context "for dependency with range requirement" do
+      let(:requirement) { ">=2.1.0" }
+
+      it "is up to date" do
+        expect(update_checker_instance.up_to_date?).to eq(true)
+      end
+    end
+
+    context "for outdated dependency" do
+      let(:requirement) { "^1.0.0" }
+
+      it "is not up to date" do
+        expect(update_checker_instance.up_to_date?).to eq(false)
+      end
+    end
+  end
 end

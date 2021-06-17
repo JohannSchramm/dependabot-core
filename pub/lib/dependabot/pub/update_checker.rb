@@ -29,6 +29,12 @@ module Dependabot
         latest_resolvable_version
       end
 
+      def up_to_date?
+        return true if pub_requirements.any?(&:any_op?)
+
+        super
+      end
+
       private
 
       def latest_version_resolvable_with_full_unlock?
