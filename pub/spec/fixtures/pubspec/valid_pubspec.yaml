@@ -19,11 +19,12 @@ dependencies:
   g: '^1.0.0'
   h: '>= 1.0.0 < 2.0.0'
   i: '<= 1.1.2 > 1.1.0'
+  j: ">=0.1.0-a.0 <2.0.0"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  j: '1.0.0'
+  z: '1.0.0'
 
 flutter:
   uses-material-design: true

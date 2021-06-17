@@ -48,7 +48,7 @@ module Dependabot
         requirements = requirements.flatten.compact.map do |obj|
           next obj unless obj.is_a?(String) && UNION_REGEX.match?(obj)
 
-          obj.scan(UNION_REGEX).flatten.compact
+          obj.scan(UNION_REGEX).flatten.compact.select { |r| REQUIREMENT_REGEX.match?(r) }
         end
 
         super(requirements)

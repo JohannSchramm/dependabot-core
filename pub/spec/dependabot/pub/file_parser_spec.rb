@@ -137,6 +137,17 @@ RSpec.describe Dependabot::Pub::FileParser do
           version: nil,
           package_manager: "pub",
           requirements: [{
+            requirement: ">=0.1.0-a.0 <2.0.0",
+            groups: ["dependencies"],
+            source: nil,
+            file: "pubspec.yaml"
+          }]
+        ),
+        Dependabot::Dependency.new(
+          name: "z",
+          version: nil,
+          package_manager: "pub",
+          requirements: [{
             requirement: "1.0.0",
             groups: ["dev_dependencies"],
             source: nil,
