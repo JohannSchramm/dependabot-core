@@ -20,6 +20,8 @@ module Dependabot
 
       def updated_requirements
         dependency.requirements.map do |req|
+          next req if latest_version.nil?
+
           new_requirement = "^#{latest_version.version}"
           req.merge(requirement: new_requirement)
         end
