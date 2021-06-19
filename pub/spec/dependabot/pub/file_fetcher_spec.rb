@@ -123,4 +123,18 @@ RSpec.describe Dependabot::Pub::FileFetcher do
       )
     end
   end
+
+  context "helper functions" do
+    it "should return true if a pubspec.yaml is included" do
+      expect(described_class.required_files_in?(["pubspec.yaml", "pubspec.lock"])).to eq(true)
+    end
+
+    it "should return false if a pubspec.yaml is not included" do
+      expect(described_class.required_files_in?(["readme.md", "pubspec.lock"])).to eq(false)
+    end
+
+    it "should return a required files message" do
+      expect(described_class.required_files_message).to be_a(String)
+    end
+  end
 end

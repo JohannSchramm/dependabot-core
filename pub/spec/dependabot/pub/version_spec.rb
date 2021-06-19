@@ -50,6 +50,13 @@ RSpec.describe Dependabot::Pub::Version do
       expect(version.build_number_string).to eq("a-b")
     end
 
+    it "parses the correct version number, prerelease and build number" do
+      version = described_class.new("1.2.3-a+b")
+      expect(version.version_number_string).to eq("1.2.3")
+      expect(version.prerelease_string).to eq("a")
+      expect(version.build_number_string).to eq("b")
+    end
+
     it "raises an error for an invalid version" do
       expect { described_class.new("1.0.0+test-test+test") }.
         to raise_error(ArgumentError)
