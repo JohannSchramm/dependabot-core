@@ -57,11 +57,30 @@ module Dependabot
       def satisfied_by?(version)
         version = Pub::Version.new(version.to_s)
 
-        @requirements.all? { |op, req_ver| OPS[op].call(version, req_ver) }
+        @requirements.all? { |op, req_ver| OPS[op].call(version, req_ver) && range_prerelease(op, version, req_ver) }
       end
 
       def any_op?
         @requirements.any? { |op, _| op == "any" }
+      end
+
+      private
+
+      def req_prerelease?
+        @requirements.any? { |_, req_ver| req_ver.prerelease? }
+      end
+
+      def req_same_version_number?
+        @requirements.all? { |_, req_ver| req_ver.version_number_string == @requirements[0][1].version_number_string }
+      end
+
+      def range_prerelease(req_op, version, req_ver)
+        return true unless version.prerelease?
+        return true unless ["<", "<=", ">", ">="].any?(req_op)
+        return true unless version.version_number_string == req_ver.version_number_string
+        return false unless req_ver.prerelease? || req_same_version_number?
+
+        req_prerelease?
       end
     end
   end
